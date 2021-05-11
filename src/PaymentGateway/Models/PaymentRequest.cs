@@ -29,6 +29,6 @@ namespace PaymentGateway.Models
         /// </summary>
         public string PaymentReference { get; set; }
 
-        public IPaymentMethod PaymentMethod { get; set; }
+        public Card Card { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PaymentGateway.Models
 {
-    public class Card : IPaymentMethod
+    public class Card
     {
         public string NameOnCard { get; set; }
 
