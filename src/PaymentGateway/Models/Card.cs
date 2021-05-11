@@ -10,7 +10,12 @@
         public string CardIssuer { get; set; }
 
         public int CardNumber { get; set; }
+
+        /// <summary>
+        /// MM/YY format
+        /// </summary>
         public string ExpiryDate { get; set; }
+
         public int CVV { get; set; }
     }
 }
