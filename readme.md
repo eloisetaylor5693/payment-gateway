@@ -2,4 +2,6 @@
 
 
 ## Assumptions
-Some assumptions about the merchant ID and terminal ID I got from reading this article:  https://tidalcommerce.com/learn/merchant-id-number 
+
+- [Merchant ID](https://tidalcommerce.com/learn/merchant-id-number)
+- [Terminal ID](https://www.opayo.co.uk/support/28/36/terminal-id-s)
