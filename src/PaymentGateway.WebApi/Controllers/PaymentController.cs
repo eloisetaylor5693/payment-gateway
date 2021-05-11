@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PaymentGateway.Models;
 using System;
 
 namespace PaymentGateway.WebApi.Controllers
@@ -9,7 +10,7 @@ namespace PaymentGateway.WebApi.Controllers
     {
         [HttpPost]
         [Route("make-a-payment")]
-        public ActionResult MakePayment()
+        public ActionResult MakePayment([FromBody] PaymentRequest request)
         {
             return Ok("Payment received");
         }
