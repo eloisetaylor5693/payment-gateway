@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PaymentGateway.Handlers
 {
-    public sealed class MakeAPaymentHandler : IRequestHandler<MakeAPaymentCommand, PaymentResponse>
+    public sealed class MakeAPaymentHandler : IRequestHandler<MakeAPaymentRequest, PaymentResponse>
     {
-        public Task<PaymentResponse> Handle(MakeAPaymentCommand request, CancellationToken cancellationToken)
+        public Task<PaymentResponse> Handle(MakeAPaymentRequest request, CancellationToken cancellationToken)
         {
             return Task.FromResult(new PaymentResponse
             {

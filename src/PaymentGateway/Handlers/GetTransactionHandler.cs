@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace PaymentGateway.Handlers
 {
-    public sealed class GetTransactionHandler : IRequestHandler<GetTransactionCommand, string>
+    public sealed class GetTransactionHandler : IRequestHandler<GetTransactionRequest, string>
     {
-        public Task<string> Handle(GetTransactionCommand request, CancellationToken cancellationToken)
+        public Task<string> Handle(GetTransactionRequest request, CancellationToken cancellationToken)
         {
             return Task.FromResult("Here's your payment information");
         }

@@ -14,7 +14,7 @@ namespace PaymentGateway.WebApi.Controllers
         public PaymentController(IMediator mediator) => _mediator = mediator;
 
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult<PaymentResponse>> MakePaymentAsync([FromBody] MakeAPaymentCommand request)
+        public async System.Threading.Tasks.Task<ActionResult<PaymentResponse>> MakePaymentAsync([FromBody] MakeAPaymentRequest request)
         {
             var response = await _mediator.Send(request);
 
@@ -23,7 +23,7 @@ namespace PaymentGateway.WebApi.Controllers
 
         [HttpPost]
         [Route("get-transaction")]
-        public async System.Threading.Tasks.Task<ActionResult> GetPaymentInformationAsync([FromBody] GetTransactionCommand request)
+        public async System.Threading.Tasks.Task<ActionResult> GetPaymentInformationAsync([FromBody] GetTransactionRequest request)
         {
             var response = await _mediator.Send(request);
 

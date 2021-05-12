@@ -3,7 +3,7 @@ using System;
 
 namespace PaymentGateway.Commands
 {
-    public class GetTransactionCommand : IRequest<string>
+    public class GetTransactionRequest : IRequest<string>
     {
         public Guid TransationId { get; set; }
     }

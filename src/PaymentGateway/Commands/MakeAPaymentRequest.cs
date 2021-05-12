@@ -4,7 +4,7 @@ using System;
 
 namespace PaymentGateway.Commands
 {
-    public class MakeAPaymentCommand : IPaymentRequest, IRequest<PaymentResponse>
+    public class MakeAPaymentRequest : IPaymentRequest, IRequest<PaymentResponse>
     {
         public Guid TransationId { get; } = Guid.NewGuid();
 
