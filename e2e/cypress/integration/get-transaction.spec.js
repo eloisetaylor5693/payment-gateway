@@ -1,4 +1,4 @@
-describe('api/payment/get-transaction', () => {
+describe('/payment-gateway/api/pay/get-transaction', () => {
     describe('Given a payment ID that exists', () => {
         it('Then payment information is returned', () => { });
     });

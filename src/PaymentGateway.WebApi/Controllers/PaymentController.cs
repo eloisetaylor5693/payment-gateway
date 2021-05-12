@@ -5,11 +5,10 @@ using System;
 namespace PaymentGateway.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("payment-gateway/api/pay")]
     public class PaymentController : ControllerBase
     {
         [HttpPost]
-        [Route("make-a-payment")]
         public ActionResult MakePayment([FromBody] PaymentRequest request)
         {
             return Ok("Payment received");

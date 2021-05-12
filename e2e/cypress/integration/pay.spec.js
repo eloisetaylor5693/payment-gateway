@@ -1,4 +1,4 @@
-describe('api/payment/make-a-payment', () => {
+describe('/payment-gateway/api/pay', () => {
     describe('When making a valid payment request', () => {
         it('Then it succeeds', () => {
             const request = {
@@ -17,7 +17,7 @@ describe('api/payment/make-a-payment', () => {
                 }
             };
 
-            cy.request('POST', '/make-a-payment', request)
+            cy.request('POST', '/pay', request)
                 .then(response => {
                     expect(response.status).to.equal(200);
                 })
