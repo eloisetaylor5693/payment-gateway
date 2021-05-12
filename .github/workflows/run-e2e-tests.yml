@@ -1,0 +1,41 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Run API
+      run: dotnet run
+      working-directory: 'src'
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.1.5
+      with:
+        node-version: '16'
+        
+    - name: npm ci
+      run: npm ci
+      working-directory: 'e2e'
+      
+    - name: Run cypress tests
+      run: npm run cy:run
+      working-directory: 'e2e'
+      
+     
+        
+    
