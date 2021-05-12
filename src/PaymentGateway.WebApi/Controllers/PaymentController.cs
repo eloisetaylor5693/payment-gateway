@@ -9,9 +9,14 @@ namespace PaymentGateway.WebApi.Controllers
     public class PaymentController : ControllerBase
     {
         [HttpPost]
-        public ActionResult MakePayment([FromBody] PaymentRequest request)
+        public ActionResult<PaymentResponse> MakePayment([FromBody] PaymentRequest request)
         {
-            return Ok("Payment received");
+            return Ok(new PaymentResponse
+            {
+                TransactionSucessful = true,
+                TransationId = Guid.NewGuid(),
+                Message = "Payment received"
+            });
         }
 
         [HttpGet]

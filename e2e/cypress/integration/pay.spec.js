@@ -20,6 +20,10 @@ describe('/payment-gateway/api/pay', () => {
             cy.request('POST', '/pay', request)
                 .then(response => {
                     expect(response.status).to.equal(200);
+
+                    expect(response.body.transactionSucessful).to.be.true;
+                    expect(response.body.transationId).to.not.be.null;
+                    expect(response.body.message).to.equal("Payment received");
                 })
         });
     });
