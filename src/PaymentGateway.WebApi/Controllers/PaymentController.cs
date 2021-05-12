@@ -21,11 +21,13 @@ namespace PaymentGateway.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("get-transaction")]
-        public ActionResult GetPaymentInformation([FromQuery] string paymentId)
+        public async System.Threading.Tasks.Task<ActionResult> GetPaymentInformationAsync([FromBody] GetTransactionCommand request)
         {
-            return Ok("Here's your payment information");
+            var response = await _mediator.Send(request);
+
+            return Ok(response);
         }
     }
 }
