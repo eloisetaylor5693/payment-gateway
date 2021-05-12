@@ -3,9 +3,9 @@ using PaymentGateway.Commands;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PaymentGateway.Handlers
+namespace PaymentGateway.RequestHandlers
 {
-    public sealed class GetTransactionHandler : IRequestHandler<GetTransactionRequest, string>
+    public sealed class GetTransactionRequestHandler : IRequestHandler<GetTransactionRequest, string>
     {
         public Task<string> Handle(GetTransactionRequest request, CancellationToken cancellationToken)
         {
