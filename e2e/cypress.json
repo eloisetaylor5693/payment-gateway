@@ -1,3 +1,4 @@
 {
-    "baseUrl": "https://localhost:5001/payment-gateway/api"
+    "baseUrl": "https://localhost:5001/payment-gateway/api",
+    "video": false
 }
