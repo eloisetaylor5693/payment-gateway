@@ -2,6 +2,7 @@ bin
 obj
 .vs
 *.user
+logs
 
 ## for the cypress tests:
 node_modules
