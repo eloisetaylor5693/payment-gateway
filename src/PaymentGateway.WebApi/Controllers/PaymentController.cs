@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using PaymentGateway.Commands;
 using PaymentGateway.Models;
-using System;
 
 namespace PaymentGateway.WebApi.Controllers
 {
@@ -8,15 +9,16 @@ namespace PaymentGateway.WebApi.Controllers
     [Route("payment-gateway/api/pay")]
     public class PaymentController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public PaymentController(IMediator mediator) => _mediator = mediator;
+
         [HttpPost]
-        public ActionResult<PaymentResponse> MakePayment([FromBody] PaymentRequest request)
+        public async System.Threading.Tasks.Task<ActionResult<PaymentResponse>> MakePaymentAsync([FromBody] MakeAPaymentCommand request)
         {
-            return Ok(new PaymentResponse
-            {
-                TransactionSucessful = true,
-                TransationId = Guid.NewGuid(),
-                Message = "Payment received"
-            });
+            var response = await _mediator.Send(request);
+
+            return Ok(response);
         }
 
         [HttpGet]
