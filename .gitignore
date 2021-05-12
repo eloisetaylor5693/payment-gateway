@@ -5,3 +5,5 @@ obj
 
 ## for the cypress tests:
 node_modules
+videos
+screenshots
