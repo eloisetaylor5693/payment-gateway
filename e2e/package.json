@@ -2,10 +2,9 @@
   "name": "payment-gateway-e2e-tests",
   "description": "Cyress tests to validate the API",
   "scripts": {
-    "test": "cypress open",
+    "test": "npm run cy:open",
     "cy:run": "cypress run",
-    "cy:open": "cypress open",
-    "cy:cc": "cypress cache clear"
+    "cy:open": "cypress open"
   },
   "license": "ISC",
   "devDependencies": {
