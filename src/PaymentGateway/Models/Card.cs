@@ -9,7 +9,7 @@
         /// </summary>
         public string CardIssuer { get; set; }
 
-        public int CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         /// <summary>
         /// MM/YY format
