@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace PaymentGateway.Commands
+namespace PaymentGateway.Requests
 {
     public class GetTransactionRequest : IRequest<string>
     {

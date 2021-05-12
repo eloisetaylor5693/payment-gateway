@@ -2,7 +2,7 @@
 using PaymentGateway.Models;
 using System;
 
-namespace PaymentGateway.Commands
+namespace PaymentGateway.Requests
 {
     public class MakeAPaymentRequest : IPaymentRequest, IRequest<PaymentResponse>
     {

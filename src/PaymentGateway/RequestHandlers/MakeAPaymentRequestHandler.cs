@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PaymentGateway.Commands;
+using PaymentGateway.Requests;
 using PaymentGateway.Models;
 using System;
 using System.Threading;

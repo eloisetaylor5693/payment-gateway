@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PaymentGateway.Commands;
+using PaymentGateway.Requests;
 using PaymentGateway.Models;
 
 namespace PaymentGateway.WebApi.Controllers
