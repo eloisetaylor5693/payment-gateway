@@ -2,3 +2,6 @@ bin
 obj
 .vs
 *.user
+
+## for the cypress tests:
+node_modules
