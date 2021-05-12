@@ -1,6 +1,6 @@
 {
   "name": "payment-gateway-e2e-tests",
-  "description": "Cyress tests to validate the API",
+  "description": "Cypress tests to validate the API",
   "scripts": {
     "test": "npm run cy:open",
     "cy:run": "cypress run",
