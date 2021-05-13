@@ -6,3 +6,7 @@
 - [Merchant ID](https://tidalcommerce.com/learn/merchant-id-number)
 - [Terminal ID](https://www.opayo.co.uk/support/28/36/terminal-id-s)
 - Only handling card payments. Other payment methods are "phase 2" of the project
+
+## What I would do differently
+
+- Instead of relying on datetime, I might use a library such as noda time for more reliable dates
