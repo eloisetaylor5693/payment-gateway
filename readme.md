@@ -13,4 +13,5 @@ I decided to test the API using Cypress because it's quick to configure and easy
 
 ## What I would do differently
 
-- Instead of relying on datetime, I might use a library such as noda time for more reliable dates
+- Instead of relying on datetime, I might use a library such as noda time for more reliable dates.      
+- I would containerise this API.  My PC is "Windows 10 Home" so it's a bit of a pain to install docker on. 
