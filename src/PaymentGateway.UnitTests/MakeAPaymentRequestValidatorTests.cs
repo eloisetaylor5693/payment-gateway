@@ -84,6 +84,21 @@ namespace PaymentGateway.UnitTests
             Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
         }
 
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("£300 for my sofa")]
+        [TestCase("this is a longer string than is accepted by the validation rules")]
+        [Test]
+        public void WhenInvalidPaymentReference_FailsValidation(string invalidPaymentReference)
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.PaymentReference = invalidPaymentReference;
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
+
         private MakeAPaymentRequest ValidRequest() =>
                 new MakeAPaymentRequest
                 {

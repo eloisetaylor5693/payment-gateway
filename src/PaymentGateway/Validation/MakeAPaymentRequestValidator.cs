@@ -29,7 +29,12 @@ namespace PaymentGateway.Validation
                 .Length(8)
                 .Matches(@"^[0-9]+$")
                 .WithMessage("Must be an 8 digit number");
-                .Matches(@"^[0-9]+$");
+
+            RuleFor(x => x.PaymentReference)
+                .NotNull()
+                .Length(1,25)
+                .Matches(@"^[a-zA-Z0-9#-]+$")
+                .WithMessage("Must be a string with less than 25 characters long, containing letters, numbers, or the characters # or -");
         }
     }
 }
