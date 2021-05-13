@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace PaymentGateway.BankPayment
 {
-    public class FakeMakeBankPaymentAdapter : IMakeBankPaymentAdapter
+    public class FakeBankPaymentAdapter : IMakeBankPaymentAdapter
     {
         private ILogger _logger;
 
-        public FakeMakeBankPaymentAdapter()
+        public FakeBankPaymentAdapter()
         {
-            _logger = Log.ForContext<FakeMakeBankPaymentAdapter>();
+            _logger = Log.ForContext<FakeBankPaymentAdapter>();
         }
 
         public async Task<IPaymentResponse> PayAsync(MakeAPaymentRequest request)

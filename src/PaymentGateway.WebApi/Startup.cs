@@ -22,7 +22,7 @@ namespace PaymentGateway.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IMakeBankPaymentAdapter, FakeMakeBankPaymentAdapter>();
+            services.AddScoped<IMakeBankPaymentAdapter, FakeBankPaymentAdapter>();
             
             services.AddMediatR(typeof(MakeAPaymentRequest));
             services.AddControllers();
