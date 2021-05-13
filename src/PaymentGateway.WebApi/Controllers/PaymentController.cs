@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PaymentGateway.Requests;
 using PaymentGateway.Models;
+using PaymentGateway.Requests;
 
 namespace PaymentGateway.WebApi.Controllers
 {
@@ -18,7 +18,12 @@ namespace PaymentGateway.WebApi.Controllers
         {
             var response = await _mediator.Send(request);
 
-            return Ok(response);
+            if (response.TransactionSucessful)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
         }
 
         [HttpPost]

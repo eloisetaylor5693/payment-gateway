@@ -48,7 +48,7 @@ describe('/payment-gateway/api/pay', () => {
 
             cy.request('POST', '/pay', request)
                 .then(response => {
-                    expect(response.status).to.equal(200);
+                    expect(response.status).to.equal(400);
 
                     expect(response.body.transactionSucessful).to.be.false;
                     expect(response.body.transationId).to.not.be.null;
