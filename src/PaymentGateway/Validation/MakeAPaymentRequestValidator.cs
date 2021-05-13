@@ -21,6 +21,14 @@ namespace PaymentGateway.Validation
             RuleFor(x => x.MerchantId)
                 .NotNull()
                 .Length(15)
+                .Matches(@"^[0-9]+$")
+                .WithMessage("Must be a 15 digit number");
+
+            RuleFor(x => x.TerminalId)
+                .NotNull()
+                .Length(8)
+                .Matches(@"^[0-9]+$")
+                .WithMessage("Must be an 8 digit number");
                 .Matches(@"^[0-9]+$");
         }
     }

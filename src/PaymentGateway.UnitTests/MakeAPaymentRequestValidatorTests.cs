@@ -67,6 +67,23 @@ namespace PaymentGateway.UnitTests
             Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
         }
 
+        [TestCase("")]
+        [TestCase("123")]
+        [TestCase("ABCDEFGH")]
+        [TestCase("........")]
+        [TestCase("-1234567")]
+        [TestCase(null)]
+        [Test]
+        public void WhenInvalidTerminalId_FailsValidation(string invalidTerminalId)
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.TerminalId = invalidTerminalId;
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
+
         private MakeAPaymentRequest ValidRequest() =>
                 new MakeAPaymentRequest
                 {
