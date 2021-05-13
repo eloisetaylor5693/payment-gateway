@@ -41,7 +41,7 @@ namespace PaymentGateway.Validation
                 .NotNull()
                 .GreaterThan(DateTime.UtcNow.AddMinutes(-5))
                     .WithMessage("Can't accept payment from over 5 minutes ago. Try again with new transaction.")
-                .LessThan(DateTime.UtcNow.AddSeconds(1))
+                .LessThan(DateTime.UtcNow.AddSeconds(15))
                     .WithMessage("Can't accept payment in the future");
         }
     }

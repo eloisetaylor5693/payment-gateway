@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using PaymentGateway.BankPayment;
 using PaymentGateway.Models;
 using PaymentGateway.Requests;
@@ -11,17 +12,19 @@ namespace PaymentGateway.RequestHandlers
     public sealed class MakeAPaymentRequestHandler : IRequestHandler<MakeAPaymentRequest, PaymentResponse>
     {
         private readonly IMakeBankPaymentAdapter _bankPaymentAdapter;
+        private readonly IValidator<MakeAPaymentRequest> _validator;
 
-        public MakeAPaymentRequestHandler(IMakeBankPaymentAdapter bankPaymentAdapter)
+        public MakeAPaymentRequestHandler(IMakeBankPaymentAdapter bankPaymentAdapter, IValidator<MakeAPaymentRequest> validator)
         {
             _bankPaymentAdapter = bankPaymentAdapter;
+            _validator = validator;
         }
 
         public async Task<PaymentResponse> Handle(MakeAPaymentRequest request, CancellationToken cancellationToken)
         {
             using (LogContext.PushProperty("transactionId", request.TransationId))
             {
-                // validate request 
+                await _validator.ValidateAndThrowAsync(request);
 
                 // have I made the payment before?
 

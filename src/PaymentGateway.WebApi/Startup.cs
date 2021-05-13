@@ -1,3 +1,4 @@
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PaymentGateway.BankPayment;
 using PaymentGateway.Requests;
+using PaymentGateway.Validation;
 
 namespace PaymentGateway.WebApi
 {
@@ -22,8 +24,9 @@ namespace PaymentGateway.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IMakeBankPaymentAdapter, FakeBankPaymentAdapter>();
-            
+            services.AddSingleton<IMakeBankPaymentAdapter, FakeBankPaymentAdapter>();
+            services.AddSingleton<IValidator<MakeAPaymentRequest>, MakeAPaymentRequestValidator>();
+
             services.AddMediatR(typeof(MakeAPaymentRequest));
             services.AddControllers();
             services.AddSwaggerGen(c =>
