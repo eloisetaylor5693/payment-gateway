@@ -3,6 +3,8 @@ name: Run e2e tests
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,7 +20,7 @@ jobs:
         dotnet-version: 5.0.x
         
     - name: Run API
-      run: dotnet run
+      run: dotnet run &
       working-directory: 'src/PaymentGateway.WebApi'
       
     - name: Setup Node.js environment
