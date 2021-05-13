@@ -46,14 +46,18 @@ describe('/payment-gateway/api/pay', () => {
                 }
             };
 
-            cy.request('POST', '/pay', request, { failOnStatusCode: false })
-                .then(response => {
-                    expect(response.status).to.equal(400);
+            cy.request({
+                method: 'POST',
+                url: '/pay',
+                body: request,
+                failOnStatusCode: false
+            }).then(response => {
+                expect(response.status).to.equal(400);
 
-                    expect(response.body.transactionSucessful).to.be.false;
-                    expect(response.body.transationId).to.not.be.null;
-                    expect(response.body.message).to.equal("Not enough funds to make the payment");
-                });
+                expect(response.body.transactionSucessful).to.be.false;
+                expect(response.body.transationId).to.not.be.null;
+                expect(response.body.message).to.equal("Not enough funds to make the payment");
+            });
         });
     });
 
