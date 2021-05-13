@@ -2,6 +2,8 @@
 using PaymentGateway.BankPayment;
 using PaymentGateway.Models;
 using PaymentGateway.Requests;
+using Serilog;
+using Serilog.Context;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,14 +20,17 @@ namespace PaymentGateway.RequestHandlers
 
         public Task<PaymentResponse> Handle(MakeAPaymentRequest request, CancellationToken cancellationToken)
         {
-            var response = _bankPaymentAdapter.Pay(request);
-
-            return Task.FromResult(new PaymentResponse
+            using (LogContext.PushProperty("transactionId", request.TransationId))
             {
-                TransactionSucessful = response.TransactionSucessful,
-                TransationId = request.TransationId,
-                Message = response.Message
-            });
+                var response = _bankPaymentAdapter.Pay(request);
+
+                return Task.FromResult(new PaymentResponse
+                {
+                    TransactionSucessful = response.TransactionSucessful,
+                    TransationId = request.TransationId,
+                    Message = response.Message
+                });
+            }
         }
     }
 }
