@@ -10,6 +10,15 @@ namespace PaymentGateway.BankPayment
         {
             var fakeBankTransactionId = Guid.NewGuid();
 
+            if (request.PaymentAmount > 200)
+            {
+                return new FailedBankPaymentResponse
+                {
+                    TransationId = fakeBankTransactionId,
+                    Message = "Not enough funds to make the payment"
+                };
+            }
+
             return new SuccessfulBankPaymentResponse
             {
                 TransationId = fakeBankTransactionId
