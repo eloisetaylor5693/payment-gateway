@@ -2,7 +2,7 @@
 
 namespace PaymentGateway.Models
 {
-    public class PaymentResponse
+    public class PaymentResponse : IPaymentResponse
     {
         public bool TransactionSucessful { get; set; }
         public Guid TransationId { get; set; }
