@@ -7,6 +7,10 @@
 - [Terminal ID](https://www.opayo.co.uk/support/28/36/terminal-id-s)
 - Only handling card payments. Other payment methods are "phase 2" of the project
 
+## Decisions
+
+I decided to test the API using Cypress because it's quick to configure and easy to use.  Another benefit is that testing an API in 2 languages can highlight issues in the usage of the RESTful API (unit tests in c# and e2e in Javascript).  If I used C# all the way through, I wouldn't see the pain of the different date formats as easily, because I would likely be using `DateTime` all the way through.  
+
 ## What I would do differently
 
 - Instead of relying on datetime, I might use a library such as noda time for more reliable dates
