@@ -1,0 +1,72 @@
+using FluentValidation;
+using NUnit.Framework;
+using PaymentGateway.Models;
+using PaymentGateway.Requests;
+using PaymentGateway.Validation;
+using System;
+
+namespace PaymentGateway.UnitTests
+{
+    [TestFixture]
+    public sealed class MakeAPaymentRequestValidatorTests
+    {
+        [Test]
+        public void WhenValidRequest_PassesValidation()
+        {
+            var validator = new MakeAPaymentRequestValidator();
+
+            validator.ValidateAndThrow(ValidRequest());
+        }
+
+        [TestCase("")]
+        [TestCase("123")]
+        [TestCase("ABCDE")]
+        [TestCase(null)]
+        [Test]
+        public void WhenInvalidCurrency_FailsValidation(string invalidCurrencyCode)
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.IsoCurrencyCode = invalidCurrencyCode;
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
+
+        [TestCase(0)]
+        [TestCase(-5)]
+        [TestCase(int.MaxValue)]
+        [TestCase(int.MinValue)]
+        [TestCase(5000)]
+        [TestCase(null)]
+        [Test]
+        public void WhenInvalidPaymentAmount_FailsValidation(int invalidPaymentAmount)
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.PaymentAmount = invalidPaymentAmount;
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
+
+
+        private MakeAPaymentRequest ValidRequest() =>
+                new MakeAPaymentRequest
+                {
+                    TransactionDate = DateTime.Now,
+                    MerchantId = 12345678,//9012345,
+                    TerminalId = 123,
+                    IsoCurrencyCode = "GBP",
+                    PaymentAmount = 150.78,
+                    PaymentReference = "Order#6274",
+                    Card = new Card
+                    {
+                        NameOnCard = "Miss Anne Other",
+                        CardNumber = "1234123412341234",
+                        ExpiryDate = "05/25",
+                        CVV = 123
+                    }
+                };
+    }
+}
