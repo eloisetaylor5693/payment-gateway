@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using PaymentGateway.Requests;
+using PaymentGateway.BankPayment;
 using PaymentGateway.Models;
-using System;
+using PaymentGateway.Requests;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,13 +9,22 @@ namespace PaymentGateway.RequestHandlers
 {
     public sealed class MakeAPaymentRequestHandler : IRequestHandler<MakeAPaymentRequest, PaymentResponse>
     {
+        private readonly IMakeBankPaymentAdapter _bankPaymentAdapter;
+
+        public MakeAPaymentRequestHandler(IMakeBankPaymentAdapter bankPaymentAdapter)
+        {
+            _bankPaymentAdapter = bankPaymentAdapter;
+        }
+
         public Task<PaymentResponse> Handle(MakeAPaymentRequest request, CancellationToken cancellationToken)
         {
+            var response = _bankPaymentAdapter.Pay(request);
+
             return Task.FromResult(new PaymentResponse
             {
-                TransactionSucessful = true,
+                TransactionSucessful = response.TransactionSucessful,
                 TransationId = request.TransationId,
-                Message = "Payment received"
+                Message = response.Message
             });
         }
     }
