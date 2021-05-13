@@ -9,6 +9,10 @@ namespace PaymentGateway.RequestHandlers
     {
         public Task<string> Handle(GetTransactionRequest request, CancellationToken cancellationToken)
         {
+            // try and find transaction
+
+            // return data
+
             return Task.FromResult("Here's your payment information");
         }
     }

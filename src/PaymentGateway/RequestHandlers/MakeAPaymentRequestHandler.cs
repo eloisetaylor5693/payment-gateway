@@ -22,7 +22,13 @@ namespace PaymentGateway.RequestHandlers
         {
             using (LogContext.PushProperty("transactionId", request.TransationId))
             {
+                // validate request 
+
+                // have I made the payment before?
+
                 var response = _bankPaymentAdapter.Pay(request);
+
+                // store payment + result
 
                 return Task.FromResult(new PaymentResponse
                 {
