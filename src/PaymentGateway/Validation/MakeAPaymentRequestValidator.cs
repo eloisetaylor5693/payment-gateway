@@ -1,5 +1,6 @@
 using FluentValidation;
 using PaymentGateway.Requests;
+using System;
 
 namespace PaymentGateway.Validation
 {
@@ -35,6 +36,13 @@ namespace PaymentGateway.Validation
                 .Length(1,25)
                 .Matches(@"^[a-zA-Z0-9#-]+$")
                 .WithMessage("Must be a string with less than 25 characters long, containing letters, numbers, or the characters # or -");
+
+            RuleFor(x => x.TransactionDate)
+                .NotNull()
+                .GreaterThan(DateTime.UtcNow.AddMinutes(-5))
+                    .WithMessage("Can't accept payment from over 5 minutes ago. Try again with new transaction.")
+                .LessThan(DateTime.UtcNow.AddSeconds(1))
+                    .WithMessage("Can't accept payment in the future");
         }
     }
 }

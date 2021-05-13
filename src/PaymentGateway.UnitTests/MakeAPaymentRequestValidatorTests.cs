@@ -99,10 +99,21 @@ namespace PaymentGateway.UnitTests
             Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
         }
 
+        [Test]
+        public void WhenInvalidTransactionDate_FailsValidation()
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.TransactionDate = DateTime.UtcNow.AddHours(1);
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
+
         private MakeAPaymentRequest ValidRequest() =>
                 new MakeAPaymentRequest
                 {
-                    TransactionDate = DateTime.Now,
+                    TransactionDate = DateTime.UtcNow,
                     MerchantId = "123456789012345",
                     TerminalId = "12345678",
                     IsoCurrencyCode = "GBP",
