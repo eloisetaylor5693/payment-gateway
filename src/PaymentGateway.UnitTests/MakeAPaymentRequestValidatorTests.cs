@@ -50,6 +50,22 @@ namespace PaymentGateway.UnitTests
             Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
         }
 
+        [TestCase("")]
+        [TestCase("123")]
+        [TestCase("ABCDEFGHIJKLMNO")]
+        [TestCase("...............")]
+        [TestCase("-12345678901234")]
+        [TestCase(null)]
+        [Test]
+        public void WhenInvalidMerchantId_FailsValidation(string invalidMerchantId)
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.MerchantId = invalidMerchantId;
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
 
         private MakeAPaymentRequest ValidRequest() =>
                 new MakeAPaymentRequest

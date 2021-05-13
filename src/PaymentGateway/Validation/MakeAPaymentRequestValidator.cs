@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using PaymentGateway.Requests;
 
 namespace PaymentGateway.Validation
@@ -17,6 +17,11 @@ namespace PaymentGateway.Validation
                 .NotNull()
                 .GreaterThan(0)
                 .LessThan(5000);
+
+            RuleFor(x => x.MerchantId)
+                .NotNull()
+                .Length(15)
+                .Matches(@"^[0-9]+$");
         }
     }
 }
