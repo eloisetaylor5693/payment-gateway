@@ -2,6 +2,7 @@
 using PaymentGateway.Requests;
 using Serilog;
 using System;
+using System.Threading.Tasks;
 
 namespace PaymentGateway.BankPayment
 {
@@ -13,7 +14,8 @@ namespace PaymentGateway.BankPayment
         {
             _logger = Log.ForContext<FakeMakeBankPaymentAdapter>();
         }
-        public IPaymentResponse Pay(MakeAPaymentRequest request)
+
+        public async Task<IPaymentResponse> PayAsync(MakeAPaymentRequest request)
         {
             var fakeBankTransactionId = Guid.NewGuid();
 
@@ -21,17 +23,17 @@ namespace PaymentGateway.BankPayment
             {
                 _logger.Warning("Payment request to the bank failed");
 
-                return new FailedBankPaymentResponse
+                return await Task.FromResult(new FailedBankPaymentResponse
                 {
                     TransationId = fakeBankTransactionId,
                     Message = "Not enough funds to make the payment"
-                };
+                });
             }
 
-            return new SuccessfulBankPaymentResponse
+            return await Task.FromResult(new SuccessfulBankPaymentResponse
             {
                 TransationId = fakeBankTransactionId
-            };
+            });
         }
     }
 }
