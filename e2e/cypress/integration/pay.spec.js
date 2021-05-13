@@ -29,7 +29,7 @@ describe('/payment-gateway/api/pay', () => {
     });
 
     describe("When the accound doesn't have enough funds to make the payment", () => {
-        it('then payment fails', () => { 
+        it('then payment fails', () => {
             const request = {
                 "transactionDate": "2021-05-12T16:26:36.246Z",
                 "merchantId": 123,
@@ -46,7 +46,7 @@ describe('/payment-gateway/api/pay', () => {
                 }
             };
 
-            cy.request('POST', '/pay', request)
+            cy.request('POST', '/pay', request, { failOnStatusCode: false })
                 .then(response => {
                     expect(response.status).to.equal(400);
 
