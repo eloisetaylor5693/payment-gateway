@@ -10,9 +10,9 @@ namespace PaymentGateway.Requests
 
         public DateTime TransactionDate { get; set; }
 
-        public int MerchantId { get; set; }
+        public string MerchantId { get; set; }
 
-        public int TerminalId { get; set; }
+        public string TerminalId { get; set; }
 
         public double PaymentAmount { get; set; }
 

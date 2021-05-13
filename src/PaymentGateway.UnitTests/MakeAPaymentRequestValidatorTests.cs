@@ -55,8 +55,8 @@ namespace PaymentGateway.UnitTests
                 new MakeAPaymentRequest
                 {
                     TransactionDate = DateTime.Now,
-                    MerchantId = 12345678,//9012345,
-                    TerminalId = 123,
+                    MerchantId = "123456789012345",
+                    TerminalId = "12345678",
                     IsoCurrencyCode = "GBP",
                     PaymentAmount = 150.78,
                     PaymentReference = "Order#6274",

@@ -3,8 +3,8 @@ describe('/payment-gateway/api/pay', () => {
         it('Then it succeeds', () => {
             const request = {
                 "transactionDate": "2021-05-12T16:26:36.246Z",
-                "merchantId": 123,
-                "terminalId": 5,
+                "merchantId": "123",
+                "terminalId": "5",
                 "paymentAmount": 32.93,
                 "isoCurrencyCode": "GBP",
                 "paymentReference": "Order #2325",
@@ -32,8 +32,8 @@ describe('/payment-gateway/api/pay', () => {
         it('then payment fails', () => {
             const request = {
                 "transactionDate": "2021-05-12T16:26:36.246Z",
-                "merchantId": 123,
-                "terminalId": 5,
+                "merchantId": "123",
+                "terminalId": "5",
                 "paymentAmount": 556.93,
                 "isoCurrencyCode": "GBP",
                 "paymentReference": "Order #2325",

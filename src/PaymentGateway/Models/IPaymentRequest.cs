@@ -15,7 +15,7 @@ namespace PaymentGateway.Models
         /// <summary>
         /// 15 digits long identification number for the merchant
         /// </summary>
-        int MerchantId { get; set; }
+        string MerchantId { get; set; }
 
         double PaymentAmount { get; set; }
 
@@ -24,7 +24,7 @@ namespace PaymentGateway.Models
         /// <summary>
         /// 8 digits long identification number for the terminal 
         /// </summary>
-        int TerminalId { get; set; }
+        string TerminalId { get; set; }
 
         DateTime TransactionDate { get; set; }
     }
