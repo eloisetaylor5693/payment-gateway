@@ -80,6 +80,21 @@ namespace PaymentGateway.UnitTests
             validator.ValidateAndThrow(ValidCard);
         }
 
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("123/554")]
+        [TestCase("0123")]
+        [Test]
+        public void WhenInvalidExpiryDate_FailsValidation(string invalidExpiryDate)
+        {
+            var invalidRequest = ValidCard;
+            invalidRequest.ExpiryDate = invalidExpiryDate;
+
+            var validator = new CardValidator();
+
+            validator.ValidateAndThrow(ValidCard);
+        }
+
         private Card ValidCard => new Card
         {
             NameOnCard = "Miss Anne Other",

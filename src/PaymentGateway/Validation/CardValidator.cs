@@ -22,11 +22,16 @@ namespace PaymentGateway.Validation
             RuleFor(x => x.CardIssuer)
                 .NotNull()
                 .Must(issuer => _validCardIssuers.Contains(issuer.ToLower()))
-                .WithMessage("We only accept payment by these card issuers: " + String.Join(", ", _validCardIssuers));
+                .WithMessage("We only accept payment by these card issuers: " + string.Join(", ", _validCardIssuers));
 
             RuleFor(x => x.CVV)
                 .GreaterThan(99)
                 .LessThan(1000);
+
+            RuleFor(x => x.ExpiryDate)
+                .NotNull()
+                .Length(5)
+                .Matches(@"^\d{2}[/]\d{2}$");
         }
 
         public string[] _validCardIssuers = new[]
