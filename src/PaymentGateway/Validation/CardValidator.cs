@@ -21,7 +21,7 @@ namespace PaymentGateway.Validation
 
             RuleFor(x => x.CardIssuer)
                 .NotNull()
-                .Must(x => _validCardIssuers.Contains(x.ToLower()))
+                .Must(issuer => _validCardIssuers.Contains(issuer.ToLower()))
                 .WithMessage("We only accept payment by these card issuers: " + String.Join(", ", _validCardIssuers));
         }
 
