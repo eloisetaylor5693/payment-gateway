@@ -4,6 +4,8 @@
 ## Testing
 [Test Credit card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) that will pass validation.
 
+See `e2e\readme.md` for more information on running the Cypress tests.
+
 ## Assumptions
 
 - [Merchant ID](https://tidalcommerce.com/learn/merchant-id-number)
