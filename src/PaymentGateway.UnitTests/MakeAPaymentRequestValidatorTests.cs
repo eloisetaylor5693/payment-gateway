@@ -122,7 +122,8 @@ namespace PaymentGateway.UnitTests
                     Card = new Card
                     {
                         NameOnCard = "Miss Anne Other",
-                        CardNumber = "1234123412341234",
+                        CardIssuer = "Visa",
+                        CardNumber = "4012888888881881",
                         ExpiryDate = "05/25",
                         CVV = 123
                     }

@@ -11,7 +11,7 @@ describe('/payment-gateway/api/pay', () => {
                 "card": {
                     "nameOnCard": "Miss Anne Other",
                     "cardIssuer": "Mastercard",
-                    "cardNumber": "5574123412341234",
+                    "cardNumber": "5105105105105100",
                     "expiryDate": "05/55",
                     "cvv": 123
                 }
@@ -39,8 +39,8 @@ describe('/payment-gateway/api/pay', () => {
                 "paymentReference": "Order#2325",
                 "card": {
                     "nameOnCard": "Miss Anne Other",
-                    "cardIssuer": "Mastercard",
-                    "cardNumber": "5574123412341234",
+                    "cardIssuer": "American Express",
+                    "cardNumber": "371449635398431",
                     "expiryDate": "05/55",
                     "cvv": 123
                 }
