@@ -45,6 +45,7 @@ namespace PaymentGateway.Validation
             int.TryParse(monthString, out var month);
             int.TryParse(yearString, out var year);
 
+            // we're given a 2-digit year, so need to add 2000 so can validate properly
             year += 2000;
 
             var date = new DateTime(year, month, 1);
