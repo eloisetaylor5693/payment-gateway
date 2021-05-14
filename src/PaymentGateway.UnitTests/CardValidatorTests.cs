@@ -32,6 +32,23 @@ namespace PaymentGateway.UnitTests
             validator.ValidateAndThrow(ValidCard);
         }
 
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("1")]
+        [TestCase("Ms Anne-Other Test")]
+        [TestCase("Sean O'doherty")]
+        [TestCase("Ali")]
+        [Test]
+        public void WhenInvalidName_FailsValidation(string invalidNameOnCard)
+        {
+            var invalidRequest = ValidCard;
+            invalidRequest.NameOnCard = invalidNameOnCard;
+
+            var validator = new CardValidator();
+
+            validator.ValidateAndThrow(ValidCard);
+        }
+
         private Card ValidCard => new Card
         {
             NameOnCard = "Miss Anne Other",

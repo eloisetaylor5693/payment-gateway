@@ -10,6 +10,12 @@ namespace PaymentGateway.Validation
             RuleFor(x => x.CardNumber)
                 .NotNull()
                 .CreditCard();
+
+            RuleFor(x => x.NameOnCard)
+                .NotNull()
+                .Length(5, 60)
+                .Matches(@"^[a-zA-Z ]+$")
+                .WithMessage("Must be the name with no special characters");
         }
     }
 }
