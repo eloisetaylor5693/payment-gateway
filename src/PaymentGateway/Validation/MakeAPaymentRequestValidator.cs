@@ -43,6 +43,10 @@ namespace PaymentGateway.Validation
                     .WithMessage("Can't accept payment from over 5 minutes ago. Try again with new transaction.")
                 .LessThan(DateTime.UtcNow.AddSeconds(15))
                     .WithMessage("Can't accept payment in the future");
+
+            RuleFor(x => x.Card)
+                .NotNull()
+                .SetValidator(new CardValidator());
         }
     }
 }

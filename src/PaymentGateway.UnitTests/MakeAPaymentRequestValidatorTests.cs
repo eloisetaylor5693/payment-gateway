@@ -110,6 +110,17 @@ namespace PaymentGateway.UnitTests
             Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
         }
 
+        [Test]
+        public void WhenCardDetailsNotSet_FailsValidation()
+        {
+            var invalidRequest = ValidRequest();
+            invalidRequest.Card = null;
+
+            var validator = new MakeAPaymentRequestValidator();
+
+            Assert.Throws<ValidationException>(() => validator.ValidateAndThrow(invalidRequest));
+        }
+
         private MakeAPaymentRequest ValidRequest() =>
                 new MakeAPaymentRequest
                 {
