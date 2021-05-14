@@ -1,6 +1,9 @@
 # Payment Gateway
 [![Build](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/build.yml/badge.svg)](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/build.yml) [![e2e tests](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/run-e2e-tests.yml/badge.svg)](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/run-e2e-tests.yml)
 
+## Testing
+[Test Credit card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) that will pass validation.
+
 ## Assumptions
 
 - [Merchant ID](https://tidalcommerce.com/learn/merchant-id-number)
