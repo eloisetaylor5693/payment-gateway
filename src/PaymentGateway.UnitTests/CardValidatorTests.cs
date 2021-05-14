@@ -85,6 +85,7 @@ namespace PaymentGateway.UnitTests
         [TestCase("123/554")]
         [TestCase("0123")]
         [TestCase("05/21")]
+        [TestCase("22/22")]
         [Test]
         public void WhenInvalidExpiryDate_FailsValidation(string invalidExpiryDate)
         {
