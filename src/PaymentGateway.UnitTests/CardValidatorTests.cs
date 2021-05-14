@@ -64,6 +64,22 @@ namespace PaymentGateway.UnitTests
             validator.ValidateAndThrow(ValidCard);
         }
 
+        [TestCase(0)]
+        [TestCase(99)]
+        [TestCase(-99)]
+        [TestCase(1000)]
+        [TestCase(int.MinValue)]
+        [Test]
+        public void WhenInvalidCVV_FailsValidation(int invalidCVV)
+        {
+            var invalidRequest = ValidCard;
+            invalidRequest.CVV = invalidCVV;
+
+            var validator = new CardValidator();
+
+            validator.ValidateAndThrow(ValidCard);
+        }
+
         private Card ValidCard => new Card
         {
             NameOnCard = "Miss Anne Other",

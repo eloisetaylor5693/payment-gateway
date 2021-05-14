@@ -23,6 +23,10 @@ namespace PaymentGateway.Validation
                 .NotNull()
                 .Must(issuer => _validCardIssuers.Contains(issuer.ToLower()))
                 .WithMessage("We only accept payment by these card issuers: " + String.Join(", ", _validCardIssuers));
+
+            RuleFor(x => x.CVV)
+                .GreaterThan(99)
+                .LessThan(1000);
         }
 
         public string[] _validCardIssuers = new[]
