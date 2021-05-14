@@ -49,10 +49,26 @@ namespace PaymentGateway.UnitTests
             validator.ValidateAndThrow(ValidCard);
         }
 
+        [TestCase("")]
+        [TestCase(null)]
+        [TestCase("Discover")]
+        [TestCase("Switch/Solo")]
+        [Test]
+        public void WhenInvalidCardIssuer_FailsValidation(string invalidCardIssuer)
+        {
+            var invalidRequest = ValidCard;
+            invalidRequest.CardIssuer = invalidCardIssuer;
+
+            var validator = new CardValidator();
+
+            validator.ValidateAndThrow(ValidCard);
+        }
+
         private Card ValidCard => new Card
         {
             NameOnCard = "Miss Anne Other",
             CardNumber = "6331101999990016",
+            CardIssuer = "Visa",
             ExpiryDate = "05/25",
             CVV = 123
         };

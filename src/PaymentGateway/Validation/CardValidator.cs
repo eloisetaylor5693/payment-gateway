@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using PaymentGateway.Models;
+using System;
+using System.Linq;
 
 namespace PaymentGateway.Validation
 {
@@ -16,6 +18,20 @@ namespace PaymentGateway.Validation
                 .Length(5, 60)
                 .Matches(@"^[a-zA-Z ]+$")
                 .WithMessage("Must be the name with no special characters");
+
+            RuleFor(x => x.CardIssuer)
+                .NotNull()
+                .Must(x => _validCardIssuers.Contains(x.ToLower()))
+                .WithMessage("We only accept payment by these card issuers: " + String.Join(", ", _validCardIssuers));
         }
+
+        public string[] _validCardIssuers = new[]
+        {
+            "visa",
+            "mastercard",
+            "maestro",
+            "solo",
+            "american express"
+        };
     }
 }
