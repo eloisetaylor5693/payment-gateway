@@ -7,23 +7,25 @@ namespace PaymentGateway.Repository
 {
     public class InMemoryPaymentTransactionRepository : IPaymentTransactionRepository
     {
-        private IList<PaymentTransaction> paymentTransactions = new List<PaymentTransaction>();
+        private readonly IList<PaymentTransaction> _paymentTransactions;
 
         public InMemoryPaymentTransactionRepository()
         {
+            _paymentTransactions = new List<PaymentTransaction>();
+
             SeedTestData();
         }
 
         public async Task SaveAsync(PaymentTransaction transaction)
         {
             await Task.Run(() => 
-                paymentTransactions.Add(transaction)
+                _paymentTransactions.Add(transaction)
             );
         }
 
         private void SeedTestData()
         {
-            paymentTransactions.Add(new PaymentTransaction
+            _paymentTransactions.Add(new PaymentTransaction
             {
                 TransationId = new Guid("6fa85f64-5717-4562-b3fc-2c963f66afa9"),
                 TransactionDate = new DateTime(2021,01,29,3,52,22),
