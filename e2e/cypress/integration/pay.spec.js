@@ -17,6 +17,7 @@ describe('/payment-gateway/api/pay', () => {
 
             const request = {
                 "paymentAmount": 556.93,
+                "paymentReference": "not enough funds #1",
                 ...validRequest
             };
 
