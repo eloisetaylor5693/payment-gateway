@@ -27,5 +27,10 @@ namespace PaymentGateway.Models
         public PaymentStatus PaymentStatus { get; set; }
 
         public string BankTransactionMessage { get; set; }
+
+        public override string ToString()
+        {
+            return $"{TransationId}, {PaymentReference}, {PaymentAmount}, Successful? {TransactionSucessful}";
+        }
     }
 }

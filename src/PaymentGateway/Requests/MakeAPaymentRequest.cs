@@ -21,5 +21,10 @@ namespace PaymentGateway.Requests
         public string PaymentReference { get; set; }
 
         public Card Card { get; set; }
+
+        public override string ToString()
+        {
+            return $"{TransationId}, {PaymentReference}, {PaymentAmount}";
+        }
     }
 }
