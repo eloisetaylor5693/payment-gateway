@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PaymentGateway.BankPayment;
+using PaymentGateway.Masking;
 using PaymentGateway.Repository;
 using PaymentGateway.Requests;
 using PaymentGateway.Validation;
@@ -27,7 +28,8 @@ namespace PaymentGateway.WebApi
         {
             services.AddSingleton<IPaymentTransactionRepository, InMemoryPaymentTransactionRepository>();
             services.AddSingleton<IMakeBankPaymentAdapter, FakeBankPaymentAdapter>();
-            services.AddSingleton<IValidator<MakeAPaymentRequest>, MakeAPaymentRequestValidator>();       
+            services.AddSingleton<IValidator<MakeAPaymentRequest>, MakeAPaymentRequestValidator>();
+            services.AddSingleton<IMaskSensitiveData, MaskSensitiveData>();
 
             services.AddMediatR(typeof(MakeAPaymentRequest));
             services.AddControllers();
