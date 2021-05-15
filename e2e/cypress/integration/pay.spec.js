@@ -35,7 +35,7 @@ describe('/payment-gateway/api/pay', () => {
         });
     });
 
-    it.only('then the previous payment ID status is given', () => {
+    it('then the previous payment ID status is given', () => {
         const request = {
             "merchantId": "12345123412345",
             "terminalId": "87654321",
