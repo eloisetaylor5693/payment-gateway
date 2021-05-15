@@ -1,10 +1,16 @@
 ﻿using MediatR;
+using PaymentGateway.Models;
 using System;
 
 namespace PaymentGateway.Requests
 {
-    public class GetTransactionRequest : IRequest<string>
+    public class GetTransactionRequest : IRequest<PaymentTransaction>
     {
-        public Guid TransationId { get; set; }
+        public Guid TransactionId { get; set; }
+
+        public override string ToString()
+        {
+            return TransactionId.ToString();
+        }
     }
 }

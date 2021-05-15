@@ -22,7 +22,7 @@ namespace PaymentGateway.Repository
         {
             return Task.FromResult(
                 _paymentTransactions
-                    .Single(x => x.TransationId == transactionId));
+                    .SingleOrDefault(x => x.TransationId == transactionId));
         }
 
         public Task<PaymentTransaction> GetPaymentTransaction(MakeAPaymentRequest request)

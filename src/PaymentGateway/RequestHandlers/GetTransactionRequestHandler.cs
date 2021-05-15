@@ -1,19 +1,24 @@
 ﻿using MediatR;
+using PaymentGateway.Models;
+using PaymentGateway.Repository;
 using PaymentGateway.Requests;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PaymentGateway.RequestHandlers
 {
-    public sealed class GetTransactionRequestHandler : IRequestHandler<GetTransactionRequest, string>
+    public sealed class GetTransactionRequestHandler : IRequestHandler<GetTransactionRequest, PaymentTransaction>
     {
-        public Task<string> Handle(GetTransactionRequest request, CancellationToken cancellationToken)
+        private readonly IPaymentTransactionRepository _repository;
+
+        public GetTransactionRequestHandler(IPaymentTransactionRepository repository)
         {
-            // try and find transaction
+            _repository = repository;
+        }
 
-            // return data
-
-            return Task.FromResult("Here's your payment information");
+        public async Task<PaymentTransaction> Handle(GetTransactionRequest request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetPaymentTransaction(request.TransactionId);
         }
     }
 }
