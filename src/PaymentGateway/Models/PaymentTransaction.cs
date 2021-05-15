@@ -2,7 +2,7 @@
 
 namespace PaymentGateway.Models
 {
-    public class PaymentTransaction
+    public class PaymentTransaction : IBasicPaymentData
     {
         public Guid TransationId { get; set; }
 

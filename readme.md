@@ -20,6 +20,8 @@ I used fluent validation because it has some useful inbuilt validators such as t
 
 I used the mediatr library because I think that the mediator pattern helps create a clean architecture within the app.
 
+I have tried to optimise for readibility of the code
+
 ## What I would do differently
 
 - Instead of relying on datetime, I might use a library such as noda time for more reliable dates.      
