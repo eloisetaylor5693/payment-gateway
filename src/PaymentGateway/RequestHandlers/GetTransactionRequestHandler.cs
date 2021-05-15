@@ -23,7 +23,9 @@ namespace PaymentGateway.RequestHandlers
         {
             var transaction = await _repository.GetPaymentTransaction(request.TransactionId);
 
-            return _masker.Mask(transaction);
+            return transaction == null ?
+                transaction :
+                _masker.Mask(transaction);
         }
     }
 }
