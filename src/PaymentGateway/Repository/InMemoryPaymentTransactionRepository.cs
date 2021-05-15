@@ -1,6 +1,8 @@
 ﻿using PaymentGateway.Models;
+using PaymentGateway.Requests;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PaymentGateway.Repository
@@ -14,6 +16,27 @@ namespace PaymentGateway.Repository
             _paymentTransactions = new List<PaymentTransaction>();
 
             SeedTestData();
+        }
+
+        public Task<PaymentTransaction> GetPaymentTransaction(Guid transactionId)
+        {
+            return Task.FromResult(
+                _paymentTransactions
+                    .Single(x => x.TransationId == transactionId));
+        }
+
+        public Task<PaymentTransaction> GetPaymentTransaction(MakeAPaymentRequest request)
+        {
+            return Task.FromResult(
+                _paymentTransactions
+                    .SingleOrDefault(x => x.TransactionDate == request.TransactionDate &&
+                                 x.MerchantId == request.MerchantId &&
+                                 x.TerminalId == request.TerminalId &&
+                                 x.PaymentReference == request.PaymentReference &&
+                                 x.PaymentAmount == request.PaymentAmount &&
+                                 x.IsoCurrencyCode == request.IsoCurrencyCode &&
+                                 x.Card.CardNumber == request.Card.CardNumber
+                    ));
         }
 
         public async Task SaveAsync(PaymentTransaction transaction)

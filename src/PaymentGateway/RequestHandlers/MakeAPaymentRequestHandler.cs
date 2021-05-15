@@ -32,7 +32,17 @@ namespace PaymentGateway.RequestHandlers
             {
                 await _validator.ValidateAndThrowAsync(request);
 
-                // have I made the payment before?
+                var previousTransaction = await _repository.GetPaymentTransaction(request);
+
+                if (previousTransaction != null)
+                {
+                    return new PaymentResponse
+                    {
+                        TransactionSucessful = previousTransaction.TransactionSucessful,
+                        TransationId = previousTransaction.TransationId,
+                        Message = previousTransaction.BankTransactionMessage
+                    };
+                }
 
                 var responseFromBank = await _bankPaymentAdapter.PayAsync(request);
 

@@ -1,23 +1,7 @@
 describe('/payment-gateway/api/pay', () => {
     describe('When making a valid payment request', () => {
         it('Then it succeeds', () => {
-            const request = {
-                "transactionDate": new Date(),
-                "merchantId": "123456789012345",
-                "terminalId": "12345678",
-                "paymentAmount": 32.93,
-                "isoCurrencyCode": "GBP",
-                "paymentReference": "Order#2325",
-                "card": {
-                    "nameOnCard": "Miss Anne Other",
-                    "cardIssuer": "Mastercard",
-                    "cardNumber": "5105105105105100",
-                    "expiryDate": "05/55",
-                    "cvv": 123
-                }
-            };
-
-            cy.request('POST', '/pay', request)
+            cy.request('POST', '/pay', validRequest)
                 .then(response => {
                     expect(response.status).to.equal(200);
 
@@ -30,20 +14,10 @@ describe('/payment-gateway/api/pay', () => {
 
     describe("When the accound doesn't have enough funds to make the payment", () => {
         it('then payment fails', () => {
+
             const request = {
-                "transactionDate": new Date(),
-                "merchantId": "123456789012345",
-                "terminalId": "12345678",
                 "paymentAmount": 556.93,
-                "isoCurrencyCode": "GBP",
-                "paymentReference": "Order#2325",
-                "card": {
-                    "nameOnCard": "Miss Anne Other",
-                    "cardIssuer": "American Express",
-                    "cardNumber": "371449635398431",
-                    "expiryDate": "05/55",
-                    "cvv": 123
-                }
+                ...validRequest
             };
 
             cy.request({
@@ -61,7 +35,40 @@ describe('/payment-gateway/api/pay', () => {
         });
     });
 
-    describe('when I repeat the same payment', () => {
-        it('then payment is rejected', () => { });
+    it.only('then the previous payment ID status is given', () => {
+        const request = {
+            "merchantId": "12345123412345",
+            "terminalId": "87654321",
+            ...validRequest
+        };
+
+        cy.request('POST', '/pay', validRequest)
+            .then(response => {
+                expect(response.status).to.equal(200);
+
+                cy.request('POST', '/pay', validRequest)
+                    .then(secondResponse => {
+                        expect(secondResponse.status).to.equal(200);
+                    })
+                    .its('body.transationId')
+                    .should('equal', response.body.transationId);
+            });
     });
+
+
+    const validRequest = {
+        "transactionDate": new Date(),
+        "merchantId": "123456789012345",
+        "terminalId": "12345678",
+        "paymentAmount": 32.93,
+        "isoCurrencyCode": "GBP",
+        "paymentReference": "Order#2325",
+        "card": {
+            "nameOnCard": "Miss Anne Other",
+            "cardIssuer": "Mastercard",
+            "cardNumber": "5105105105105100",
+            "expiryDate": "05/55",
+            "cvv": 123
+        }
+    };
 });

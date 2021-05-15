@@ -19,6 +19,7 @@ namespace PaymentGateway
                 PaymentReference = request.PaymentReference,
                 IsoCurrencyCode = request.IsoCurrencyCode,
                 TransactionSucessful = responseFromBank.TransactionSucessful,
+                BankTransactionMessage = responseFromBank.Message,
                 TransactionDate = request.TransactionDate,
                 Card = request.Card
             };

@@ -11,6 +11,7 @@ See `e2e\readme.md` for more information on running the Cypress tests.
 - [Merchant ID](https://tidalcommerce.com/learn/merchant-id-number)
 - [Terminal ID](https://www.opayo.co.uk/support/28/36/terminal-id-s)
 - Only handling card payments. Other payment methods are "phase 2" of the project
+- If a payment fails, the payment needs to be submitted again, with a new Transaction Date
 
 ## Decisions
 

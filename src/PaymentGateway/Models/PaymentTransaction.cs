@@ -25,5 +25,7 @@ namespace PaymentGateway.Models
         public bool TransactionSucessful { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
+
+        public string BankTransactionMessage { get; set; }
     }
 }
