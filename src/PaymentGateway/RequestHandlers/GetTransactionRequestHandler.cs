@@ -18,6 +18,8 @@ namespace PaymentGateway.RequestHandlers
 
         public async Task<PaymentTransaction> Handle(GetTransactionRequest request, CancellationToken cancellationToken)
         {
+            // TODO: mask the card number eg **** **** **** 1234
+
             return await _repository.GetPaymentTransaction(request.TransactionId);
         }
     }
