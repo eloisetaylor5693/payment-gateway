@@ -2,6 +2,7 @@
 using MediatR;
 using PaymentGateway.BankPayment;
 using PaymentGateway.Models;
+using PaymentGateway.Repository;
 using PaymentGateway.Requests;
 using Serilog.Context;
 using System.Threading;
@@ -13,11 +14,16 @@ namespace PaymentGateway.RequestHandlers
     {
         private readonly IMakeBankPaymentAdapter _bankPaymentAdapter;
         private readonly IValidator<MakeAPaymentRequest> _validator;
+        private readonly IPaymentTransactionRepository _repository;
 
-        public MakeAPaymentRequestHandler(IMakeBankPaymentAdapter bankPaymentAdapter, IValidator<MakeAPaymentRequest> validator)
+        public MakeAPaymentRequestHandler(
+            IMakeBankPaymentAdapter bankPaymentAdapter, 
+            IValidator<MakeAPaymentRequest> validator,
+            IPaymentTransactionRepository repository)
         {
             _bankPaymentAdapter = bankPaymentAdapter;
             _validator = validator;
+            _repository = repository;
         }
 
         public async Task<PaymentResponse> Handle(MakeAPaymentRequest request, CancellationToken cancellationToken)
@@ -28,15 +34,17 @@ namespace PaymentGateway.RequestHandlers
 
                 // have I made the payment before?
 
-                var response = await _bankPaymentAdapter.PayAsync(request);
+                var responseFromBank = await _bankPaymentAdapter.PayAsync(request);
 
-                // store payment + result
+                var transaction = request.ToPaymentTransaction(responseFromBank);
+
+                await _repository.SaveAsync(transaction);
 
                 return new PaymentResponse
                 {
-                    TransactionSucessful = response.TransactionSucessful,
+                    TransactionSucessful = responseFromBank.TransactionSucessful,
                     TransationId = request.TransationId,
-                    Message = response.Message
+                    Message = responseFromBank.Message
                 };
             }
         }
