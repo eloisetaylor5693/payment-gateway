@@ -51,12 +51,15 @@ namespace PaymentGateway.Repository
             _paymentTransactions.Add(new PaymentTransaction
             {
                 TransationId = new Guid("6fa85f64-5717-4562-b3fc-2c963f66afa9"),
+                BankTransactionId = new Guid("12a3d345-5717-4562-b3fc-2c963f66afa9"),
                 TransactionDate = new DateTime(2021,01,29,3,52,22),
                 MerchantId = "123456789012345",
                 TerminalId = "12345678",
                 IsoCurrencyCode = "GBP",
                 PaymentAmount = 275.69,
                 PaymentReference = "Order#9876",
+                TransactionSucessful = true,
+                PaymentStatus = PaymentStatus.Success,
                 Card = new Card
                 {
                     NameOnCard = "Miss Anne Other",
