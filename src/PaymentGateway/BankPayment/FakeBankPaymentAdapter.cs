@@ -15,7 +15,7 @@ namespace PaymentGateway.BankPayment
             _logger = Log.ForContext<FakeBankPaymentAdapter>();
         }
 
-        public async Task<IPaymentResponse> PayAsync(MakeAPaymentRequest request)
+        public async Task<IBankTransactionResponse> PayAsync(MakeAPaymentRequest request)
         {
             var fakeBankTransactionId = Guid.NewGuid();
 
@@ -26,6 +26,7 @@ namespace PaymentGateway.BankPayment
                 return await Task.FromResult(new FailedBankPaymentResponse
                 {
                     TransationId = fakeBankTransactionId,
+                    PaymentStatus = PaymentStatus.NotEnoughFunds,
                     Message = "Not enough funds to make the payment"
                 });
             }
