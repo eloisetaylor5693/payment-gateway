@@ -16,9 +16,9 @@ describe('/payment-gateway/api/pay', () => {
         it('then payment fails', () => {
 
             const request = {
-                "paymentAmount": 556.93,
-                "paymentReference": "not enough funds #1",
-                ...validRequest
+                ...validRequest,
+                paymentAmount: 556.93,
+                paymentReference: "not-enough-funds"
             };
 
             cy.request({
@@ -38,9 +38,9 @@ describe('/payment-gateway/api/pay', () => {
 
     it('then the previous payment ID status is given', () => {
         const request = {
-            "merchantId": "12345123412345",
-            "terminalId": "87654321",
-            ...validRequest
+            ...validRequest,
+            merchantId: "12345123412345",
+            terminalId: "87654321"
         };
 
         cy.request('POST', '/pay', validRequest)
