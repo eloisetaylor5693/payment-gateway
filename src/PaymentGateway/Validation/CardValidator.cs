@@ -34,7 +34,7 @@ namespace PaymentGateway.Validation
                 .Matches(@"^\d{2}[/]\d{2}$")
                     .WithMessage("Must be in the format MM/YY")
                 .Must(BeAValidDate)
-                    .WithMessage("Must be a valid date in the format MM/YY, and must be in the future");
+                    .WithMessage("Card is expired");
         }
 
         public bool BeAValidDate(string expiryDate)
