@@ -23,7 +23,7 @@ describe('/payment-gateway/api/pay/get-transaction', () => {
                         paymentReference: 'Order#9876',
                         transactionSucessful: true,
                         paymentStatus: 1,
-                        transactionDate: null,
+                        transactionDate: undefined,
                         bankTransactionId: '12a3d345-5717-4562-b3fc-2c963f66afa9',
                         bankTransactionMessage: null,
                         card: {
