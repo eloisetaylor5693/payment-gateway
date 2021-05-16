@@ -1,5 +1,6 @@
 ﻿using PaymentGateway.Models;
 using PaymentGateway.Requests;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace PaymentGateway.Repository
 {
     public class InMemoryPaymentTransactionRepository : IPaymentTransactionRepository
     {
+        private readonly ILogger _logger;
         private readonly IList<PaymentTransaction> _paymentTransactions;
 
         public InMemoryPaymentTransactionRepository()
         {
+            _logger = Log.ForContext<InMemoryPaymentTransactionRepository>();
             _paymentTransactions = new List<PaymentTransaction>();
 
             SeedTestData();
@@ -41,6 +44,16 @@ namespace PaymentGateway.Repository
 
         public async Task SaveAsync(PaymentTransaction transaction)
         {
+            var existingTransaction = await GetPaymentTransaction(transaction.TransactionId);
+
+            if (existingTransaction != null)
+            {
+                _logger.Warning("Tried to save a transaction to the repo that already exists");
+                return;
+            }
+
+            _logger.Information("Saving payment '{reference}' to the database", transaction.PaymentReference);
+
             await Task.Run(() => 
                 _paymentTransactions.Add(transaction)
             );

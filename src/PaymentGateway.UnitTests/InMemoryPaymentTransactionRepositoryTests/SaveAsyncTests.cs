@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using PaymentGateway.Models;
 using PaymentGateway.Repository;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -9,6 +10,14 @@ namespace PaymentGateway.UnitTests.InMemoryPaymentTransactionRepositoryTests
     [TestFixture]
     public sealed class SaveAsyncTests
     {
+        public SaveAsyncTests()
+        {
+            Log.Logger = new LoggerConfiguration()
+               .Enrich.FromLogContext()
+               .WriteTo.Console()
+               .CreateLogger();
+        }
+
         [Test]
         public async Task GivenANewTransaction_ShouldSave()
         {
