@@ -11,3 +11,7 @@
 
 Run in console: `npm run cy:run`     
 Run in browser (useful for troubleshooting): `npm run cy:open`
+
+## Useful links
+<https://docs.cypress.io/guides/getting-started/writing-your-first-test>      
+<https://selleo.com/blog/how-to-get-started-with-cypress-a-simple-guide>
