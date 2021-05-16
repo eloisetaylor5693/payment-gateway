@@ -42,6 +42,11 @@ namespace PaymentGateway.Repository
                     ));
         }
 
+        /// <summary>
+        /// Not saving transaction if it already exists in the datastore. 
+        /// Logic upstream catches if the contents of the request is a duplicate, 
+        /// I'm only catching system faults here
+        /// </summary>
         public async Task SaveAsync(PaymentTransaction transaction)
         {
             var existingTransaction = await GetPaymentTransaction(transaction.TransactionId);
