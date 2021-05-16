@@ -29,3 +29,5 @@ I have tried to optimise for readibility of the code
 - I would containerise this API.  My PC is "Windows 10 Home" so it's a bit of a pain to install docker on. 
 - I may get rid of the magic strings in the validation logic.  I held off for the time being because I think that some of the messages needed to be customised according to which validation rule triggered the error.     
 - If I were working with others to get this project completed, I would most likely use short-lived branches and create PRs for review.  In this case it seemed overkill to branch and merge all the time.     
+- I might implement the decorator pattern for logging and other things such as telemetry and caching.       
+- I would implement persistent storage.  ATM I'm storing in memory, but lots of storage options would be easier to implement with an instance already up-and running or docker instaled on my PC.  I would likely keep the in memory implementation for local testing.       
