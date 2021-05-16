@@ -5,7 +5,7 @@ namespace PaymentGateway.BankPayment
 {
     public interface IBankTransactionResponse
     {
-        Guid TransationId { get; }
+        Guid TransactionId { get; }
         bool TransactionSucessful { get; }
         PaymentStatus PaymentStatus { get; }
         string Message { get; }

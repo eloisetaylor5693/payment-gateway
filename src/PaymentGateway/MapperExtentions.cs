@@ -10,10 +10,10 @@ namespace PaymentGateway
         {
             return new PaymentTransaction
             {
-                TransationId = request.TransationId,
+                TransactionId = request.TransactionId,
                 MerchantId = request.MerchantId,
                 TerminalId = request.TerminalId,
-                BankTransactionId = responseFromBank.TransationId,
+                BankTransactionId = responseFromBank.TransactionId,
                 PaymentStatus = responseFromBank.PaymentStatus,
                 PaymentAmount = request.PaymentAmount,
                 PaymentReference = request.PaymentReference,

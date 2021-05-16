@@ -5,12 +5,12 @@ namespace PaymentGateway.Models
     public class PaymentResponse
     {
         public bool TransactionSucessful { get; set; }
-        public Guid TransationId { get; set; }
+        public Guid TransactionId { get; set; }
         public string Message { get; set; }
 
         public override string ToString()
         {
-            return $"{TransationId}, Successful? {TransactionSucessful}, {Message}";
+            return $"{TransactionId}, Successful? {TransactionSucessful}, {Message}";
         }
     }
 }

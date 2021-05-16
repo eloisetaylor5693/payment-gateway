@@ -6,7 +6,7 @@ describe('/payment-gateway/api/pay', () => {
                     expect(response.status).to.equal(200);
 
                     expect(response.body.transactionSucessful).to.be.true;
-                    expect(response.body.transationId).to.not.be.null;
+                    expect(response.body.transactionId).to.not.be.null;
                     expect(response.body.message).to.equal("Payment received");
                 });
         });
@@ -30,7 +30,7 @@ describe('/payment-gateway/api/pay', () => {
                 expect(response.status).to.equal(400);
 
                 expect(response.body.transactionSucessful).to.be.false;
-                expect(response.body.transationId).to.not.be.null;
+                expect(response.body.transactionId).to.not.be.null;
                 expect(response.body.message).to.equal("Not enough funds to make the payment");
             });
         });
@@ -51,8 +51,8 @@ describe('/payment-gateway/api/pay', () => {
                     .then(secondResponse => {
                         expect(secondResponse.status).to.equal(200);
                     })
-                    .its('body.transationId')
-                    .should('equal', response.body.transationId);
+                    .its('body.transactionId')
+                    .should('equal', response.body.transactionId);
             });
     });
 

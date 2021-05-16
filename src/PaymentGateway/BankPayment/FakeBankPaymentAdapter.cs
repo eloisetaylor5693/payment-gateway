@@ -25,7 +25,7 @@ namespace PaymentGateway.BankPayment
 
                 return await Task.FromResult(new FailedBankPaymentResponse
                 {
-                    TransationId = fakeBankTransactionId,
+                    TransactionId = fakeBankTransactionId,
                     PaymentStatus = PaymentStatus.NotEnoughFunds,
                     Message = "Not enough funds to make the payment"
                 });
@@ -33,7 +33,7 @@ namespace PaymentGateway.BankPayment
 
             return await Task.FromResult(new SuccessfulBankPaymentResponse
             {
-                TransationId = fakeBankTransactionId
+                TransactionId = fakeBankTransactionId
             });
         }
     }

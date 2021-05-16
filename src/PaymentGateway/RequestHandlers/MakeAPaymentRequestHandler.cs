@@ -28,7 +28,7 @@ namespace PaymentGateway.RequestHandlers
 
         public async Task<PaymentResponse> Handle(MakeAPaymentRequest request, CancellationToken cancellationToken)
         {
-            using (LogContext.PushProperty("transactionId", request.TransationId))
+            using (LogContext.PushProperty("transactionId", request.TransactionId))
             {
                 await _validator.ValidateAndThrowAsync(request);
 
@@ -39,7 +39,7 @@ namespace PaymentGateway.RequestHandlers
                     return new PaymentResponse
                     {
                         TransactionSucessful = previousTransaction.TransactionSucessful,
-                        TransationId = previousTransaction.TransationId,
+                        TransactionId = previousTransaction.TransactionId,
                         Message = previousTransaction.BankTransactionMessage
                     };
                 }
@@ -53,7 +53,7 @@ namespace PaymentGateway.RequestHandlers
                 return new PaymentResponse
                 {
                     TransactionSucessful = responseFromBank.TransactionSucessful,
-                    TransationId = request.TransationId,
+                    TransactionId = request.TransactionId,
                     Message = responseFromBank.Message
                 };
             }

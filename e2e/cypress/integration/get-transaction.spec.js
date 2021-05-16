@@ -11,7 +11,7 @@ describe('/payment-gateway/api/pay/get-transaction', () => {
 
                     expect(response.body.merchantId).to.equal('123456789012345');
                     expect(response.body.terminalId).to.equal('12345678');
-                    expect(response.body.transationId).to.equal('6fa85f64-5717-4562-b3fc-2c963f66afa9');
+                    expect(response.body.transactionId).to.equal('6fa85f64-5717-4562-b3fc-2c963f66afa9');
                     expect(response.body.paymentAmount).to.equal(275.69);
                     expect(response.body.isoCurrencyCode).to.equal('GBP');
                     expect(response.body.paymentReference).to.equal('Order#9876');

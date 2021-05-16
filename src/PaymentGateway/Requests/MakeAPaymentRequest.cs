@@ -6,7 +6,7 @@ namespace PaymentGateway.Requests
 {
     public class MakeAPaymentRequest : IBasicPaymentData, IRequest<PaymentResponse>
     {
-        public Guid TransationId { get; } = Guid.NewGuid();
+        public Guid TransactionId { get; } = Guid.NewGuid();
 
         public DateTime TransactionDate { get; set; }
 
@@ -24,7 +24,7 @@ namespace PaymentGateway.Requests
 
         public override string ToString()
         {
-            return $"{TransationId}, {PaymentReference}, {PaymentAmount}";
+            return $"{TransactionId}, {PaymentReference}, {PaymentAmount}";
         }
     }
 }

@@ -4,7 +4,7 @@ namespace PaymentGateway.Models
 {
     public class PaymentTransaction : IBasicPaymentData
     {
-        public Guid TransationId { get; set; }
+        public Guid TransactionId { get; set; }
 
         public Guid BankTransactionId { get; set; }
 
@@ -30,7 +30,7 @@ namespace PaymentGateway.Models
 
         public override string ToString()
         {
-            return $"{TransationId}, {PaymentReference}, {PaymentAmount}, Successful? {TransactionSucessful}";
+            return $"{TransactionId}, {PaymentReference}, {PaymentAmount}, Successful? {TransactionSucessful}";
         }
     }
 }
