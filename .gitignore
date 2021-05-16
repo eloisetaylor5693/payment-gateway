@@ -3,6 +3,9 @@ obj
 .vs
 *.user
 logs
+TestResults
+coveragereport
+
 
 ## for the cypress tests:
 node_modules
