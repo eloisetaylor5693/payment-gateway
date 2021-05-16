@@ -28,5 +28,11 @@ jobs:
       working-directory: 'src'
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
       working-directory: 'src'
+
+    -name: Install Report generator
+     run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    - name: Test
+      run: reportgenerator "-reports:src\PaymentGateway.UnitTests\TestResults\9a3cf61c-3c41-4b3f-a9a5-61bffee792dd\coverage.cobertura.xml" "-targetdir:coveragereport" -reporttypes:Html
