@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PaymentGateway.Models
 {
+    [ExcludeFromCodeCoverage]
     public class PaymentResponse
     {
         public bool TransactionSucessful { get; set; }

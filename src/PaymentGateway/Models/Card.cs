@@ -1,5 +1,8 @@
-﻿namespace PaymentGateway.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PaymentGateway.Models
 {
+    [ExcludeFromCodeCoverage]
     public class Card
     {
         public string NameOnCard { get; set; }

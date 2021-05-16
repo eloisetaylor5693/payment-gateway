@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PaymentGateway.Models
 {
+    [ExcludeFromCodeCoverage]
     public class PaymentTransaction : IBasicPaymentData
     {
         public Guid TransactionId { get; set; }

@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using PaymentGateway.Models;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PaymentGateway.Requests
 {
+    [ExcludeFromCodeCoverage]
     public class MakeAPaymentRequest : IBasicPaymentData, IRequest<PaymentResponse>
     {
         public Guid TransactionId { get; } = Guid.NewGuid();

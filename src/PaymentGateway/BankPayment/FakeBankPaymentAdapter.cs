@@ -2,10 +2,12 @@
 using PaymentGateway.Requests;
 using Serilog;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace PaymentGateway.BankPayment
 {
+    [ExcludeFromCodeCoverage]
     public class FakeBankPaymentAdapter : IMakeBankPaymentAdapter
     {
         private ILogger _logger;
