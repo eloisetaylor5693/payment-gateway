@@ -15,13 +15,13 @@ See `e2e\readme.md` for more information on running the Cypress tests.
 
 ## Decisions
 
-I decided to test the API using Cypress because it's quick to configure and easy to use.  Another benefit is that testing an API in 2 languages can highlight issues in the usage of the RESTful API (unit tests in c# and e2e in Javascript).  If I used C# all the way through, I wouldn't see the pain of the different date formats as easily, because I would likely be using `DateTime` all the way through.  
+I decided to test the API using Cypress because it's quick to configure and easy to use.  Another benefit is that testing an API in 2 languages can highlight issues in the usage of the RESTful API (unit tests in c# and e2e in Javascript).  If I used C# all the way through, I wouldn't see the pain of the different date formats as easily, because I would likely be using strongly-typed properties all the way through. Likely the payment gateway would be consumed by multiple different tech-stacks if is used widely enough.   
 
 I used fluent validation because it has some useful inbuilt validators such as the card number validator.  I could have also used value types for each of the fields in the request to ensure they are valid values.
 
 I used the mediatr library because I think that the mediator pattern helps create a clean architecture within the app.
 
-I have tried to optimise for readibility of the code
+I have tried to optimise for readibility of the code, and tried to not prematurely refactor.  As such decisions like splitting the logic into multiple projects, or splitting a function out into another class have been deferred until there's more information eg way more logic, way more objects.     
 
 ## What I would do differently
 
