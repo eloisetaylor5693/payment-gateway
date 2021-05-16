@@ -1,6 +1,21 @@
 # Payment Gateway
 [![Build](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/build.yml/badge.svg)](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/build.yml) [![e2e tests](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/run-e2e-tests.yml/badge.svg)](https://github.com/eloisetaylor5693/payment-gateway/actions/workflows/run-e2e-tests.yml)
 
+## Running the app
+
+### In visual studio:
+- Right click on `PaymentGateway.WebApi`
+- Select `Set as StartUp project`
+- Select `PaymentGateway.WebApi`      
+![running in Visual Studio](documentation\run-in-visual-studio.PNG)
+
+
+
+### In VSCode:
+- Go to `Run and Debug`
+- Select `.NET Core Launch (web)` from the drop-down at the top
+- Press the debug button       
+![running in VSCode](documentation\run-in-vscode.PNG)
 ## Testing
 [Test Credit card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) that will pass validation.
 
