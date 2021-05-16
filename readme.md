@@ -23,6 +23,8 @@ I used the mediatr library because I think that the mediator pattern helps creat
 
 I have tried to optimise for readibility of the code, and tried to not prematurely refactor.  As such decisions like splitting the logic into multiple projects, or splitting a function out into another class have been deferred until there's more information eg way more logic, way more objects.     
 
+I didn't unit test the `MakeAPaymentRequestHandler` class because each branch in the logic is tested by the Cypress tests.  Given more time I might consider useful tests for this class.      
+
 ## What I would do differently
 
 - Instead of relying on datetime, I might use a library such as noda time for more reliable dates.      
