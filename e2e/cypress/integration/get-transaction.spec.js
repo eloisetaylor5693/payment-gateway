@@ -15,25 +15,24 @@ describe('/payment-gateway/api/pay/get-transaction', () => {
                     };
 
                     expect(actualPayment).to.deep.equal({
-                        merchantId: '123456789012345',
-                        terminalId: '12345678',
-                        transactionId:'6fa85f64-5717-4562-b3fc-2c963f66afa9',
-                        paymentAmount:275.69,
-                        isoCurrencyCode:'GBP',
-                        paymentReference: 'Order#9876',
-                        transactionSucessful: true,
-                        paymentStatus: 1,
-                        transactionDate: undefined,
-                        bankTransactionId: '12a3d345-5717-4562-b3fc-2c963f66afa9',
-                        bankTransactionMessage: null,
-                        card: {
-                            nameOnCard: "Miss Anne Other",
-                            cardIssuer: "Visa",
-                            cardNumber: "**** **** **** 1881",
-                            expiryDate: "05/25",
-                            cvv: 123
-                          }
-                    });
+                        "transactionId": "6fa85f64-5717-4562-b3fc-2c963f66afa9",
+                        "bankTransactionId": "12a3d345-5717-4562-b3fc-2c963f66afa9",
+                        "transactionDate": null,
+                        "merchantId": "123456789012345",
+                        "terminalId": "12345678",                                                
+                        "paymentAmount": 275.69,
+                        "isoCurrencyCode": "GBP",
+                        "paymentReference": "Order#9876",      
+                        "card": {
+                          "nameOnCard": "Miss Anne Other",
+                          "cardIssuer": "Visa",
+                          "cardNumber": "**** **** **** 1881",
+                          "expiryDate": "05/25",
+                          "cvv": 123
+                        },
+                        "transactionSucessful": true,
+                        "paymentStatus": "Success"
+                      });
                 });
         });
     });

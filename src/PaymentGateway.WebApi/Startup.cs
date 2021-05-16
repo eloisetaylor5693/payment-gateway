@@ -11,6 +11,7 @@ using PaymentGateway.Masking;
 using PaymentGateway.Repository;
 using PaymentGateway.Requests;
 using PaymentGateway.Validation;
+using System.Text.Json.Serialization;
 
 namespace PaymentGateway.WebApi
 {
@@ -32,7 +33,15 @@ namespace PaymentGateway.WebApi
             services.AddSingleton<IMaskSensitiveData, MaskSensitiveData>();
 
             services.AddMediatR(typeof(MakeAPaymentRequest));
-            services.AddControllers();
+
+            services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentGateway.WebApi", Version = "v1" });
