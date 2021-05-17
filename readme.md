@@ -7,7 +7,7 @@
 - Right click on `PaymentGateway.WebApi`
 - Select `Set as StartUp project`
 - Select `PaymentGateway.WebApi`      
-![running in Visual Studio](documentation\run-in-visual-studio.PNG)
+![running in Visual Studio](documentation/run-in-visual-studio.PNG)
 
 
 
@@ -15,7 +15,7 @@
 - Go to `Run and Debug`
 - Select `.NET Core Launch (web)` from the drop-down at the top
 - Press the debug button       
-![running in VSCode](documentation\run-in-vscode.PNG)
+![running in VSCode](documentation/run-in-vscode.PNG)
 ## Testing
 [Test Credit card numbers](https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.htm) that will pass validation.
 
