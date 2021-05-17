@@ -40,11 +40,10 @@ jobs:
     - name: Code coverage summary to console
       uses: irongut/CodeCoverageSummary@v1.0.1
       with:
-        filename: coverage/coverage.cobertura.xml
+        filename: src/PaymentGateway.UnitTests/coverage/coverage.cobertura.xml
         badge: true
         format: 'markdown'
         output: 'both'
-      working-directory: 'src/PaymentGateway.UnitTests'
 
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
@@ -52,7 +51,6 @@ jobs:
       with:
         recreate: true
         path: code-coverage-results.md
-      working-directory: 'src/PaymentGateway.UnitTests'
 
     - name: Code coverage summary to HTML
       uses: danielpalme/ReportGenerator-GitHub-Action@4.8.8
