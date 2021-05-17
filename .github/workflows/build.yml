@@ -31,16 +31,37 @@ jobs:
       run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
       working-directory: 'src'
 
-    - name: Code coverage report generator
+    # Needed for the irongut CodeCoverageSummary step
+    # https://github.com/marketplace/actions/code-coverage-summary#net-5-workflow-example
+    - name: Copy coverage report to predictable location
+      run: mkdir coverage & cp TestResults/**/coverage.cobertura.xml --target-directory=coverage
+      working-directory: 'src/PaymentGateway.UnitTests'
+
+    - name: Code coverage summary to console
+      uses: irongut/CodeCoverageSummary@v1.0.1
+      with:
+        filename: src/PaymentGateway.UnitTests/coverage/coverage.cobertura.xml
+        badge: true
+        format: 'markdown'
+        output: 'both'
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
+
+    - name: Code coverage summary to HTML
       uses: danielpalme/ReportGenerator-GitHub-Action@4.8.8
       with:
         reports: '**/coverage.cobertura.xml'
         targetdir: 'coveragereport' 
-        reporttypes: 'HtmlInline;Cobertura;TextSummary' # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
+        reporttypes: 'HtmlInline;Cobertura' # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
         verbosity: 'Info' 
         tag: '${{ github.run_number }}_${{ github.run_id }}'
 
-    - name: Upload coverage report artifact
+    - name: Upload HTML coverage report artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: CoverageReport       
