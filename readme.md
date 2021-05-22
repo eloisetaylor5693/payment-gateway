@@ -34,7 +34,7 @@ I decided to test the API using Cypress because it's quick to configure and easy
 
 I used fluent validation because it has some useful inbuilt validators such as the card number validator.  I could have also used value types for each of the fields in the request to ensure they are valid values.
 
-I used the mediatr library because I think that the mediator pattern helps create a clean architecture within the app.
+I used the [MediatR](https://github.com/jbogard/MediatR) library because I think that the mediator pattern helps create a clean architecture within the app.
 
 I have tried to optimise for readibility of the code, and tried to not prematurely refactor.  As such decisions like splitting the logic into multiple projects, or splitting a function out into another class have been deferred until there's more information eg way more logic, way more objects.     
 
